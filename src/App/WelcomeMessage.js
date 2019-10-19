@@ -2,7 +2,7 @@ import React from 'react'
 
 const WelcomeMessage = () => {
     return (
-        <div>Welcome</div>
+        <h1>Welcome to CryptoDash</h1>
     )
 }
 
