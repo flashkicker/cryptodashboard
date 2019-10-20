@@ -1,5 +1,7 @@
 import React, { Component } from "react"
 
+const cc = require("cryptocompare")
+
 export const AppContext = React.createContext()
 
 class AppProvider extends Component {
@@ -13,12 +15,21 @@ class AppProvider extends Component {
 		}
 	}
 
+	componentDidMount() {
+		this.fetchCoins()
+	}
+
+	fetchCoins = async () => {
+		let coinList = (await cc.coinList()).Data
+		this.setState({ coinList })
+	}
+
 	confirmFavorites = () => {
 		this.setState({
 			firstVisit: false,
 			page: "Dashboard"
-        })
-        
+		})
+
 		localStorage.setItem(
 			"cryptodash",
 			JSON.stringify({
@@ -36,7 +47,7 @@ class AppProvider extends Component {
 		return {}
 	}
 
-	savedPage = page => {
+	setPage = page => {
 		this.setState({ page })
 	}
 
