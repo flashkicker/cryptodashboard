@@ -30,19 +30,18 @@ const handleFilter = _.debounce((inputValue, setFilteredCoins, coinList) => {
 		.map(result => result.string)
 
 	let filteredCoins = _.pickBy(coinList, (result, symbolKey) => {
-		let coinName = result.coinName
+		let coinName = result.CoinName
 		return (
 			_.includes(fuzzyResults, symbolKey) || _.includes(fuzzyResults, coinName)
 		)
-	})
-	console.log(filteredCoins)
-
+    })
+    
 	setFilteredCoins(filteredCoins)
 }, 500)
 
 const filterCoins = (event, setFilteredCoins, coinList) => {
-    let inputValue = event.target.value
-    
+	let inputValue = event.target.value
+
 	if (!inputValue) {
 		setFilteredCoins(null)
 		return
