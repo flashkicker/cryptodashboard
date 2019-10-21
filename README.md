@@ -1,3 +1,5 @@
+### CryptoNite is a CryptoCurrency Financial Reporting App built entirely on React.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Features
@@ -28,6 +30,17 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 #### `Themes`
 
 - Easily configurable dark and light themes.
+
+## Libraries and Frameworks used
+- React & React Context API for state management
+- Styled-components: Dynamic CSS-in-JS
+- HighCharts: Graphing historical price data
+- CSS Grid: Responsive layouts
+- CryptoCompare API: Fetch real-time crypto pricing data
+- Moment: Date manipulation
+- Lodash: Functional programming
+- Create-React-App: Boilerplate Quickly
+- localStorage: Storing preferences locally
 
 ## Available Scripts
 
