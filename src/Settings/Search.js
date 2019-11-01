@@ -17,6 +17,7 @@ const SearchInput = styled.input`
 	height: 25px;
 	color: #1163c9;
 	place-self: center left;
+	width: 50%;
 `
 
 const handleFilter = _.debounce((inputValue, setFilteredCoins, coinList) => {

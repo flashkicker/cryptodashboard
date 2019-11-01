@@ -8,8 +8,9 @@ const Logo = styled.div`
 
 const Bar = styled.div`
 	display: grid;
-	grid-template-columns: 180px auto 100px 100px;
+	grid-template-columns: 180px auto 115px 100px;
 	margin-bottom: 40px;
+	align-items: baseline;
 `
 
 const ControlButtonElem = styled.div`
@@ -17,8 +18,16 @@ const ControlButtonElem = styled.div`
 	${props =>
 		props.active &&
 		css`
-			background-color: #f4f4f4;
+			box-shadow: 0px 0px 4px 2px #ffffff;
+			padding: 8px;
+			border-radius: 5px;
+			border: 1px solid;
 		`}
+`
+
+const ControlButtonText = styled.span`
+	display: block;
+	text-align: center;
 `
 
 const ControlButton = ({ name }) => {
@@ -26,7 +35,7 @@ const ControlButton = ({ name }) => {
 		<AppContext.Consumer>
 			{({ page, setPage }) => (
 				<ControlButtonElem active={page === name} onClick={() => setPage(name)}>
-					{name}
+					<ControlButtonText>{name}</ControlButtonText>
 				</ControlButtonElem>
 			)}
 		</AppContext.Consumer>
@@ -36,7 +45,7 @@ const ControlButton = ({ name }) => {
 const AppBar = () => {
 	return (
 		<Bar>
-			<Logo>CryptoDash</Logo>
+			<Logo>CryptoNite</Logo>
 			<div />
 			<ControlButton active name="Dashboard" />
 			<ControlButton name="Settings" />
