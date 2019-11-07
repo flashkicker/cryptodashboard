@@ -2,7 +2,13 @@ import React from "react"
 import styled, { css } from "styled-components"
 import { CoinHeaderGridStyled } from "../Settings/CoinHeaderGrid"
 import { SelectableTile } from "../Shared/Tile"
-import { fontSize3, fontSizeBig } from "../Shared/Styles"
+import {
+	fontSize3,
+	fontSizeBig,
+	fontSize1,
+	greenBoxShadow
+} from "../Shared/Styles"
+import { AppContext } from "../App/AppProvider"
 
 const JustifyRight = styled.div`
 	justify-self: right;
@@ -14,6 +20,11 @@ const JustifyLeft = styled.div`
 
 const TickerPrice = styled.div`
 	${fontSizeBig}
+	${props =>
+		props.compact &&
+		css`
+			${fontSize1}
+		`}
 `
 
 const ChangePct = styled.div`
@@ -33,11 +44,17 @@ const PriceTileStyled = styled(SelectableTile)`
 	${props =>
 		props.compact &&
 		css`
-            ${fontSize3}
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-gap: 5px;
-            justify-items: right;
+			${fontSize3}
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			grid-gap: 5px;
+			justify-items: right;
+		`}
+	${props =>
+		props.currentFavorite &&
+		css`
+			${greenBoxShadow}
+			pointer-events: none;
 		`}
 `
 
@@ -51,9 +68,12 @@ const ChangePercent = ({ data }) => {
 	)
 }
 
-const PriceTile = ({ symbol, data }) => {
+const PriceTile = ({ symbol, data, currentFavorite, setCurrentFavorite }) => {
 	return (
-		<PriceTileStyled>
+		<PriceTileStyled
+			onClick={setCurrentFavorite}
+			currentFavorite={currentFavorite}
+		>
 			<CoinHeaderGridStyled>
 				<div>{symbol}</div>
 				<ChangePercent data={data} />
@@ -63,12 +83,21 @@ const PriceTile = ({ symbol, data }) => {
 	)
 }
 
-const PriceTileCompact = ({ symbol, data }) => {
+const PriceTileCompact = ({
+	symbol,
+	data,
+	currentFavorite,
+	setCurrentFavorite
+}) => {
 	return (
-		<PriceTileStyled compact>
+		<PriceTileStyled
+			onClick={setCurrentFavorite}
+			compact
+			currentFavorite={currentFavorite}
+		>
 			<JustifyLeft>{symbol}</JustifyLeft>
 			<ChangePercent data={data} />
-			<TickerPrice>${numberFormat(data.PRICE)}</TickerPrice>
+			<TickerPrice compact>${numberFormat(data.PRICE)}</TickerPrice>
 		</PriceTileStyled>
 	)
 }
@@ -78,5 +107,18 @@ export default function({ price, index }) {
 	let data = price[symbol]["USD"]
 	let TileClass = index < 5 ? PriceTile : PriceTileCompact
 
-	return <TileClass symbol={symbol} data={data} />
+	return (
+		<AppContext.Consumer>
+			{({ currentFavorite, setCurrentFavorite }) => {
+				return (
+					<TileClass
+						symbol={symbol}
+						data={data}
+						currentFavorite={currentFavorite === symbol}
+						setCurrentFavorite={() => setCurrentFavorite(symbol)}
+					/>
+				)
+			}}
+		</AppContext.Consumer>
+	)
 }
