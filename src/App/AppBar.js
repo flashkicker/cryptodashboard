@@ -23,6 +23,11 @@ const ControlButtonElem = styled.div`
 			border-radius: 5px;
 			border: 1px solid;
 		`}
+	${props =>
+		props.hidden &&
+		css`
+			display: none;
+		`}
 `
 
 const ControlButtonText = styled.span`
@@ -33,8 +38,12 @@ const ControlButtonText = styled.span`
 const ControlButton = ({ name }) => {
 	return (
 		<AppContext.Consumer>
-			{({ page, setPage }) => (
-				<ControlButtonElem active={page === name} onClick={() => setPage(name)}>
+			{({ page, setPage, firstVisit }) => (
+				<ControlButtonElem
+					active={page === name}
+					hidden={firstVisit && name === "Dashboard"}
+					onClick={() => setPage(name)}
+				>
 					<ControlButtonText>{name}</ControlButtonText>
 				</ControlButtonElem>
 			)}

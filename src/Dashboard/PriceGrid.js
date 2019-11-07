@@ -18,7 +18,11 @@ export default () => {
 					<PriceGrid>
 						{prices.map((price, index) => (
 							<div>
-								<PriceTile index={index} price={price} />
+								<PriceTile
+									key={`priceTile-${index}`}
+									index={index}
+									price={price}
+								/>
 							</div>
 						))}
 					</PriceGrid>
