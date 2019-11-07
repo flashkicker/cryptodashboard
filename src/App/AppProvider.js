@@ -24,7 +24,8 @@ class AppProvider extends Component {
 			isInFavorites: this.isInFavorites,
 			confirmFavorites: this.confirmFavorites,
 			setFilteredCoins: this.setFilteredCoins,
-			setCurrentFavorite: this.setCurrentFavorite
+			setCurrentFavorite: this.setCurrentFavorite,
+			changeChartSelect: this.changeChartSelect
 		}
 	}
 
@@ -60,7 +61,7 @@ class AppProvider extends Component {
 				])
 			}
 		]
-		console.log(historicalData)
+
 		this.setState({ historicalData })
 	}
 
@@ -172,6 +173,13 @@ class AppProvider extends Component {
 
 	setFilteredCoins = filteredCoins => {
 		this.setState({ filteredCoins })
+	}
+
+	changeChartSelect = timeInterval => {
+		this.setState(
+			{ timeInterval, historicalData: null },
+			this.fetchHistoricalData
+		)
 	}
 
 	render() {
