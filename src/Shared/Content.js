@@ -6,11 +6,19 @@ export default props => {
 		<AppContext.Consumer>
 			{({ coinList, prices, firstVisit }) => {
 				if (!coinList) {
-					return <div>Loading Coins...</div>
+					return (
+						<div className="ui active dimmer">
+							<div className="ui text loader">Loading Coins</div>
+						</div>
+					)
 				}
 
 				if (!firstVisit && !prices) {
-					return <div>Loading Prices...</div>
+					return (
+						<div className="ui active dimmer">
+							<div className="ui text loader">Loading Price Data</div>
+						</div>
+					)
 				}
 
 				return <div>{props.children}</div>
