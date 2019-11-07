@@ -1,5 +1,5 @@
 {
-  "name": "cryptodashboard",
+  "name": "cryptonite",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,6 +11,7 @@
     "react-dom": "^16.10.2",
     "react-highcharts": "^16.1.0",
     "react-scripts": "3.2.0",
+    "semantic-ui-react": "^0.88.1",
     "styled-components": "^4.4.0"
   },
   "scripts": {

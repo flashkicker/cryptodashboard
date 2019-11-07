@@ -1,16 +1,19 @@
 import React from "react"
 import styled, { css } from "styled-components"
 import { AppContext } from "./AppProvider"
+import { Button } from "semantic-ui-react"
+import icon from "./icon.png"
 
 const Logo = styled.div`
-	font-size: 1.5em;
+	display: grid;
+	grid-template-columns: 40px 180px;
+	align-items: center;
 `
 
 const Bar = styled.div`
 	display: grid;
-	grid-template-columns: 180px auto 115px 100px;
+	grid-template-columns: 220px auto 115px 100px;
 	margin-bottom: 40px;
-	align-items: baseline;
 `
 
 const ControlButtonElem = styled.div`
@@ -18,10 +21,8 @@ const ControlButtonElem = styled.div`
 	${props =>
 		props.active &&
 		css`
-			box-shadow: 0px 0px 4px 2px #ffffff;
 			padding: 8px;
-			border-radius: 5px;
-			border: 1px solid;
+			border-bottom: 3px solid;
 		`}
 	${props =>
 		props.hidden &&
@@ -51,10 +52,30 @@ const ControlButton = ({ name }) => {
 	)
 }
 
+const ToggleButton = () => {
+	return (
+		<AppContext.Consumer>
+			{({ theme, changeTheme }) => (
+				<Button
+					color={theme === "dark" ? "" : "grey"}
+					onClick={changeTheme}
+					style={{ display: "block", margin: "auto" }}
+				>
+					Dark Mode: {theme === "dark" ? "ON" : "OFF"}
+				</Button>
+			)}
+		</AppContext.Consumer>
+	)
+}
+
 const AppBar = () => {
 	return (
 		<Bar>
-			<Logo>CryptoNite</Logo>
+			<Logo>
+				<img src={icon} style={{ height: "28px", width: "28px" }} />
+				<span style={{ fontSize: "32px" }}>CryptoNite</span>
+			</Logo>
+			{/* <ToggleButton /> */}
 			<div />
 			<ControlButton active name="Dashboard" />
 			<ControlButton name="Settings" />

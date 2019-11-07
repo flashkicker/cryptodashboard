@@ -15,8 +15,9 @@ class AppProvider extends Component {
 		super(props)
 		this.state = {
 			page: "Dashboard",
-			favorites: ["BTC", "LTC", "ETH", "XMR", "DOGE"],
+			favorites: ["BTC", "DOGE"],
 			timeInterval: "months",
+			theme: "dark",
 			...this.savedSettings(),
 			setPage: this.setPage,
 			addCoin: this.addCoin,
@@ -25,7 +26,8 @@ class AppProvider extends Component {
 			confirmFavorites: this.confirmFavorites,
 			setFilteredCoins: this.setFilteredCoins,
 			setCurrentFavorite: this.setCurrentFavorite,
-			changeChartSelect: this.changeChartSelect
+			changeChartSelect: this.changeChartSelect,
+			changeTheme: this.changeTheme
 		}
 	}
 
@@ -131,7 +133,7 @@ class AppProvider extends Component {
 		)
 
 		localStorage.setItem(
-			"cryptodash",
+			"cryptonite",
 			JSON.stringify({
 				favorites: this.state.favorites,
 				currentFavorite
@@ -149,21 +151,21 @@ class AppProvider extends Component {
 		)
 
 		localStorage.setItem(
-			"cryptodash",
+			"cryptonite",
 			JSON.stringify({
-				...JSON.parse(localStorage.getItem("cryptodash")),
+				...JSON.parse(localStorage.getItem("cryptonite")),
 				currentFavorite: symbol
 			})
 		)
 	}
 
 	savedSettings = () => {
-		let cryptoDashData = JSON.parse(localStorage.getItem("cryptodash"))
-		if (!cryptoDashData) {
+		let cryptoNiteData = JSON.parse(localStorage.getItem("cryptonite"))
+		if (!cryptoNiteData) {
 			return { page: "Settings", firstVisit: true }
 		}
 
-		let { favorites, currentFavorite } = cryptoDashData
+		let { favorites, currentFavorite } = cryptoNiteData
 		return { favorites, currentFavorite }
 	}
 
@@ -180,6 +182,12 @@ class AppProvider extends Component {
 			{ timeInterval, historicalData: null },
 			this.fetchHistoricalData
 		)
+	}
+
+	changeTheme = () => {
+		this.state.theme === "dark"
+			? this.setState({ theme: "light" })
+			: this.setState({ theme: "dark" })
 	}
 
 	render() {

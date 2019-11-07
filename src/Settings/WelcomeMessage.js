@@ -6,8 +6,11 @@ const WelcomeMessage = () => {
 		<AppContext.Consumer>
 			{({ firstVisit }) => {
 				return firstVisit ? (
-					<div>
-						Welcome to CryptoDash, please select your favorite coins to begin.{" "}
+					<div className="ui segment" style={{ backgroundColor: "#061a44" }}>
+						<h2>Pick Your Favorite Coins</h2>
+						<span>
+							Welcome to CryptoNite, you may select upto 15 favorite coins to begin.{" "}
+						</span>
 					</div>
 				) : null
 			}}
