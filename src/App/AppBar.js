@@ -18,10 +18,10 @@ const Bar = styled.div`
 
 const ControlButtonElem = styled.div`
 	cursor: pointer;
+	padding: 8px;
 	${props =>
 		props.active &&
 		css`
-			padding: 8px;
 			border-bottom: 3px solid;
 		`}
 	${props =>

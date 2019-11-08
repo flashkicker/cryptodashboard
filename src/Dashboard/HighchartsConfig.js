@@ -4,6 +4,11 @@ export default historicalData => {
 			text: ""
 		},
 
+		chart: {
+			height: 300,
+			marginBottom: 100
+		},
+
 		yAxis: {
 			title: {
 				text: "Price"
@@ -13,9 +18,10 @@ export default historicalData => {
 			type: "datetime"
 		},
 		legend: {
-			layout: "vertical",
-			align: "right",
-			verticalAlign: "middle"
+			align: "center",
+			verticalAlign: "bottom",
+			x: 0,
+			y: 0
 		},
 
 		plotOptions: {
@@ -36,10 +42,15 @@ export default historicalData => {
 						maxWidth: 500
 					},
 					chartOptions: {
-						legend: {
-							layout: "horizontal",
-							align: "center",
-							verticalAlign: "bottom"
+						yAxis: {
+							labels: {
+								align: "left",
+								x: 0,
+								y: -2
+							},
+							title: {
+								text: ""
+							}
 						}
 					}
 				}

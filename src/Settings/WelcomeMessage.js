@@ -7,12 +7,18 @@ const WelcomeMessage = () => {
 			{({ firstVisit }) => {
 				return firstVisit ? (
 					<div className="ui segment" style={{ backgroundColor: "#061a44" }}>
-						<h2>Pick Your Favorite Coins</h2>
+						<h4>Pick your favorite coins</h4>
 						<span>
-							Welcome to CryptoNite, you may select upto 15 favorite coins to begin.{" "}
+							Welcome to CryptoNite, you may select upto 15 favorite coins to
+							begin.{" "}
 						</span>
 					</div>
-				) : null
+				) : (
+					<div className="ui segment" style={{ backgroundColor: "#061a44" }}>
+						<h2>Here are your currently selected favorite coins</h2>
+						<span>You can select upto 15 favorite coins. </span>
+					</div>
+				)
 			}}
 		</AppContext.Consumer>
 	)

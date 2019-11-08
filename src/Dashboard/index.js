@@ -16,11 +16,17 @@ const ChartGrid = styled.div`
 export default () => {
 	return (
 		<Page name="Dashboard">
-			<PriceGrid />
-			<ChartGrid>
-				<CoinSpotlight />
-				<PriceChart />
-			</ChartGrid>
+			<div className="ui container">
+				<PriceGrid />
+				<div className="ui stackable two column grid">
+					<div className="four wide column">
+						<CoinSpotlight />
+					</div>
+					<div className="twelve wide column">
+						<PriceChart />
+					</div>
+				</div>
+			</div>
 		</Page>
 	)
 }
