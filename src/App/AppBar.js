@@ -1,19 +1,23 @@
 import React from "react"
 import styled, { css } from "styled-components"
 import { AppContext } from "./AppProvider"
-import { Button } from "semantic-ui-react"
+// import { Button } from "semantic-ui-react"
 import icon from "./icon.png"
 
 const Logo = styled.div`
 	display: grid;
-	grid-template-columns: 40px 180px;
+	grid-template-columns: ${window.innerWidth < 767.98 ? "30px" : "40px"} 180px;
+	margin: ${window.innerWidth < 767.98 ? "5px 0px 0px 10px" : "0px"};
 	align-items: center;
 `
 
 const Bar = styled.div`
 	display: grid;
-	grid-template-columns: 220px auto 115px 100px;
+	grid-template-columns: ${
+		window.innerWidth < 767.98 ? "20px" : "220px"
+	} auto 115px 100px;
 	margin-bottom: 40px;
+	// margin-left: ${window.innerWidth < 767.98 ? "0px" : "0px"};
 `
 
 const ControlButtonElem = styled.div`
@@ -52,29 +56,39 @@ const ControlButton = ({ name }) => {
 	)
 }
 
-const ToggleButton = () => {
-	return (
-		<AppContext.Consumer>
-			{({ theme, changeTheme }) => (
-				<Button
-					color={theme === "dark" ? "" : "grey"}
-					onClick={changeTheme}
-					style={{ display: "block", margin: "auto" }}
-				>
-					Dark Mode: {theme === "dark" ? "ON" : "OFF"}
-				</Button>
-			)}
-		</AppContext.Consumer>
-	)
-}
+// const ToggleButton = () => {
+// 	return (
+// 		<AppContext.Consumer>
+// 			{({ theme, changeTheme }) => (
+// 				<Button
+// 					color={theme === "dark" ? "" : "grey"}
+// 					onClick={changeTheme}
+// 					style={{ display: "block", margin: "auto" }}
+// 				>
+// 					Dark Mode: {theme === "dark" ? "ON" : "OFF"}
+// 				</Button>
+// 			)}
+// 		</AppContext.Consumer>
+// 	)
+// }
 
 const AppBar = () => {
 	return (
 		<Bar>
-			<Logo>
-				<img src={icon} style={{ height: "28px", width: "28px" }} />
-				<span style={{ fontSize: "32px" }}>CryptoNite</span>
-			</Logo>
+			{window.innerWidth < 767.98 ? (
+				<Logo>
+					<span style={{ fontSize: "20px" }}>CryptoNite</span>
+				</Logo>
+			) : (
+				<Logo>
+					<img
+						alt="CryptoNite_Logo"
+						src={icon}
+						style={{ height: "28px", width: "28px" }}
+					/>
+					<span style={{ fontSize: "32px" }}>CryptoNite</span>
+				</Logo>
+			)}
 			{/* <ToggleButton /> */}
 			<div />
 			<ControlButton active name="Dashboard" />

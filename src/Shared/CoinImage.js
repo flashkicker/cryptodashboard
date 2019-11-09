@@ -1,26 +1,17 @@
 import React from "react"
-import styled, { css } from "styled-components"
-
-const CoinImageStyled = styled.img`
-	padding: 10px 0px 5px 5px;
-	height: 50px;
-	${props =>
-		props.spotlight &&
-		css`
-			height: 200px;
-			display: block;
-			margin: auto;
-			width: 200px;
-		`}
-`
 
 export default ({ coin, spotlight }) => {
 	const { CoinSymbol, ImageUrl } = coin
 	return (
-		<CoinImageStyled
-			spotlight={spotlight}
+		<img
+			className="ui fluid image"
 			alt={CoinSymbol}
 			src={`http://cryptocompare.com/${ImageUrl}`}
+			style={
+				spotlight
+					? { padding: window.innerWidth < 767.98 ? "50px" : "20px" }
+					: { height: "50px", width: "50px", margin: "10px 0px 5px 0px" }
+			}
 		/>
 	)
 }

@@ -43,11 +43,6 @@ export default historicalData => {
 					},
 					chartOptions: {
 						yAxis: {
-							labels: {
-								align: "left",
-								x: 0,
-								y: -2
-							},
 							title: {
 								text: ""
 							}

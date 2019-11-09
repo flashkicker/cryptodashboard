@@ -23,7 +23,9 @@ export default () => {
 							<option value="months">Months</option>
 						</ChartSelect>
 						{historicalData ? (
-							<ReactHighcharts config={HighchartsConfig(historicalData)} />
+							<div style={{ width: "100%" }}>
+								<ReactHighcharts config={HighchartsConfig(historicalData)} />
+							</div>
 						) : (
 							<div className="ui active dimmer">
 								<div className="ui text loader">Loading Historical Data</div>

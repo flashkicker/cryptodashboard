@@ -1,5 +1,5 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 export default styled.div`
-    padding: 40px;
+	padding: ${window.innerWidth < 768 ? "0px" : "40px"};
 `
