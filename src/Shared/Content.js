@@ -21,7 +21,7 @@ export default props => {
 					)
 				}
 
-				return <div>{props.children}</div>
+				return <div className="ui container">{props.children}</div>
 			}}
 		</AppContext.Consumer>
 	)

@@ -2,22 +2,17 @@ import React from "react"
 import styled from "styled-components"
 import _ from "lodash"
 import fuzzy from "fuzzy"
-import { backgroundColor2, fontSize2 } from "../Shared/Styles"
+import { backgroundColor2, fontSize1 } from "../Shared/Styles"
 import { AppContext } from "../App/AppProvider"
-
-const SearchGrid = styled.div`
-	display: grid;
-	grid-template-columns: 250px 1fr;
-`
 
 const SearchInput = styled.input`
 	${backgroundColor2}
-	${fontSize2}
+	${fontSize1}
     border: 1px solid;
-	height: 25px;
+	height: 35px;
 	color: #1163c9;
 	place-self: center left;
-	width: 50%;
+	width: 100%;
 `
 
 const handleFilter = _.debounce((inputValue, setFilteredCoins, coinList) => {
@@ -69,12 +64,16 @@ export default () => {
 	return (
 		<AppContext.Consumer>
 			{({ setFilteredCoins, coinList }) => (
-				<SearchGrid>
-					<h2>Search All Coins</h2>
-					<SearchInput
-						onKeyUp={event => filterCoins(event, setFilteredCoins, coinList)}
-					/>
-				</SearchGrid>
+				<div className="ui left aligned stackable grid">
+					<div className="four wide column">
+						<h1>Search All Coins</h1>
+					</div>
+					<div className="twelve wide column" style={{ display: "inline-grid" }}>
+						<SearchInput
+							onKeyUp={event => filterCoins(event, setFilteredCoins, coinList)}
+						/>
+					</div>
+				</div>
 			)}
 		</AppContext.Consumer>
 	)

@@ -14,10 +14,6 @@ const JustifyRight = styled.div`
 	justify-self: right;
 `
 
-const JustifyLeft = styled.div`
-	justify-self: left;
-`
-
 const TickerPrice = styled.div`
 	${fontSizeBig}
 	${props =>
@@ -83,35 +79,15 @@ const PriceTile = ({ symbol, data, currentFavorite, setCurrentFavorite }) => {
 	)
 }
 
-const PriceTileCompact = ({
-	symbol,
-	data,
-	currentFavorite,
-	setCurrentFavorite
-}) => {
-	return (
-		<PriceTileStyled
-			onClick={setCurrentFavorite}
-			compact
-			currentFavorite={currentFavorite}
-		>
-			<JustifyLeft>{symbol}</JustifyLeft>
-			<ChangePercent data={data} />
-			<TickerPrice compact>${numberFormat(data.PRICE)}</TickerPrice>
-		</PriceTileStyled>
-	)
-}
-
 export default function({ price, index }) {
 	let symbol = Object.keys(price)[0]
 	let data = price[symbol]["USD"]
-	let TileClass = index < 5 ? PriceTile : PriceTileCompact
 
 	return (
 		<AppContext.Consumer>
 			{({ currentFavorite, setCurrentFavorite }) => {
 				return (
-					<TileClass
+					<PriceTile
 						symbol={symbol}
 						data={data}
 						currentFavorite={currentFavorite === symbol}
