@@ -25,19 +25,33 @@ const handleFilter = _.debounce((inputValue, setFilteredCoins, coinList) => {
 	let coinSymbols = Object.keys(coinList)
 	// Get all the coin names, map symbol to name
 	let coinNames = coinSymbols.map(symbol => coinList[symbol].CoinName)
+	// Obtain an array of all coins as an object
+	const coins = coinSymbols.map(coin => coinList[coin])
 	let allStringsToSearch = coinSymbols.concat(coinNames)
 	let fuzzyResults = fuzzy
 		.filter(inputValue, allStringsToSearch, {})
 		.map(result => result.string)
 
-	let filteredCoins = _.pickBy(coinList, (result, symbolKey) => {
-		let coinName = result.CoinName
-		return (
-			_.includes(fuzzyResults, symbolKey) || _.includes(fuzzyResults, coinName)
-		)
-    })
-    
-	setFilteredCoins(filteredCoins)
+	let coinsArr = []
+	for (let coin of fuzzyResults) {
+		// check if array element is a symbol (ex. "BTC")
+		if (coinSymbols.includes(coin)) {
+			if (!coinsArr.includes(coin)) {
+				coinsArr.push(coin)
+			}
+		}
+		// check if array element is a name (ex. "Bitcoin")
+		else if (coinNames.includes(coin)) {
+			const coinObj = coins.find(obj => {
+				return obj.CoinName === coin
+			})
+			if (!coinsArr.includes(coinObj.Symbol)) {
+				coinsArr.push(coinObj.Symbol)
+			}
+		}
+	}
+
+	setFilteredCoins(coinsArr)
 }, 500)
 
 const filterCoins = (event, setFilteredCoins, coinList) => {

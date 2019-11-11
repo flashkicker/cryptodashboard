@@ -11,10 +11,11 @@ export const CoinGridStyled = styled.div`
 `
 
 const getRemainingCoins = (coinList, filteredCoins) => {
-	return (
-		(filteredCoins && Object.keys(filteredCoins)) ||
-		Object.keys(coinList).slice(0, 100)
-	)
+	if (!filteredCoins) {
+		return Object.keys(coinList).slice(0, 100)
+	}
+
+	return filteredCoins
 }
 
 const displayCoins = (coinList, topSection, favorites, filteredCoins) => {
