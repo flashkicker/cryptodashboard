@@ -133,7 +133,7 @@ class AppProvider extends Component {
 		)
 
 		localStorage.setItem(
-			"cryptonite",
+			"cryptopium",
 			JSON.stringify({
 				favorites: this.state.favorites,
 				currentFavorite
@@ -151,21 +151,21 @@ class AppProvider extends Component {
 		)
 
 		localStorage.setItem(
-			"cryptonite",
+			"cryptopium",
 			JSON.stringify({
-				...JSON.parse(localStorage.getItem("cryptonite")),
+				...JSON.parse(localStorage.getItem("cryptopium")),
 				currentFavorite: symbol
 			})
 		)
 	}
 
 	savedSettings = () => {
-		let cryptoNiteData = JSON.parse(localStorage.getItem("cryptonite"))
-		if (!cryptoNiteData) {
+		let cryptopiumData = JSON.parse(localStorage.getItem("cryptopium"))
+		if (!cryptopiumData) {
 			return { page: "Settings", firstVisit: true }
 		}
 
-		let { favorites, currentFavorite } = cryptoNiteData
+		let { favorites, currentFavorite } = cryptopiumData
 		return { favorites, currentFavorite }
 	}
 

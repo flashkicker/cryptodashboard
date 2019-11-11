@@ -9,7 +9,7 @@ const WelcomeMessage = () => {
 					<div className="ui segment" style={{ backgroundColor: "#061a44" }}>
 						<h4>Pick your favorite coins</h4>
 						<span>
-							Welcome to CryptoNite, you may select upto 15 favorite coins to
+							Welcome to Cryptopium, you may select upto 15 favorite coins to
 							begin.{" "}
 						</span>
 					</div>

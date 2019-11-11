@@ -1,4 +1,4 @@
-### CryptoNite is a CryptoCurrency Financial Reporting App.
+### Cryptopium is a CryptoCurrency Financial Reporting App.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

@@ -81,7 +81,7 @@ const AppBar = () => {
 		<Bar>
 			<Logo>
 				<img
-					alt="CryptoNite_Logo"
+					alt="Cryptopium_Logo"
 					src={icon}
 					style={
 						window.innerWidth < 767.98
@@ -96,7 +96,7 @@ const AppBar = () => {
 							: { fontSize: "32px" }
 					}
 				>
-					CryptoNite
+					Cryptopium
 				</span>
 			</Logo>
 			{/* <ToggleButton /> */}
