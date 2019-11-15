@@ -4,10 +4,14 @@ import { AppContext } from "../App/AppProvider"
 export default props => {
 	return (
 		<AppContext.Consumer>
-			{({ coinList, prices, firstVisit }) => {
+			{({ coinList, prices, firstVisit, theme }) => {
 				if (!coinList) {
 					return (
-						<div className="ui active dimmer">
+						<div
+							className={`ui active ${
+								theme === "light" ? "inverted" : ""
+							} dimmer`}
+						>
 							<div className="ui text loader">Loading Coins</div>
 						</div>
 					)
@@ -15,7 +19,11 @@ export default props => {
 
 				if (!firstVisit && !prices) {
 					return (
-						<div className="ui active dimmer">
+						<div
+							className={`ui active ${
+								theme === "light" ? "inverted" : ""
+							} dimmer`}
+						>
 							<div className="ui text loader">Loading Price Data</div>
 						</div>
 					)

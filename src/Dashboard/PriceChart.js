@@ -36,7 +36,11 @@ export default () => {
 								<ReactHighcharts config={HighchartsConfig(historicalData)} />
 							</div>
 						) : (
-							<div className="ui active dimmer">
+							<div
+								className={`ui active ${
+									theme === "light" ? "inverted" : ""
+								} dimmer`}
+							>
 								<div className="ui text loader">Loading Historical Data</div>
 							</div>
 						)}
