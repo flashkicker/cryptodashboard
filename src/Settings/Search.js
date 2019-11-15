@@ -1,19 +1,7 @@
 import React from "react"
-import styled from "styled-components"
 import _ from "lodash"
 import fuzzy from "fuzzy"
-import { backgroundColor2, fontSize1 } from "../Shared/Styles"
 import { AppContext } from "../App/AppProvider"
-
-const SearchInput = styled.input`
-	${backgroundColor2}
-	${fontSize1}
-    border: 1px solid;
-	height: 35px;
-	color: #1163c9;
-	place-self: center left;
-	width: 100%;
-`
 
 const handleFilter = _.debounce((inputValue, setFilteredCoins, coinList) => {
 	// Get all the coin symbols
@@ -60,16 +48,30 @@ const filterCoins = (event, setFilteredCoins, coinList) => {
 	handleFilter(inputValue, setFilteredCoins, coinList)
 }
 
+const themeDecider = theme => ({
+	backgroundColor: theme === "light" ? "white" : "#010e2c",
+	fontSize: "1.5em",
+	border: "1px solid",
+	height: "35px",
+	color: "#1163c9",
+	placeSelf: "center left",
+	width: "100%"
+})
+
 export default () => {
 	return (
 		<AppContext.Consumer>
-			{({ setFilteredCoins, coinList }) => (
+			{({ setFilteredCoins, coinList, theme }) => (
 				<div className="ui left aligned stackable grid">
 					<div className="four wide column">
 						<h1>Search All Coins</h1>
 					</div>
-					<div className="twelve wide column" style={{ display: "inline-grid" }}>
-						<SearchInput
+					<div
+						className="twelve wide column"
+						style={{ display: "inline-grid" }}
+					>
+						<input
+							style={themeDecider(theme)}
 							onKeyUp={event => filterCoins(event, setFilteredCoins, coinList)}
 						/>
 					</div>

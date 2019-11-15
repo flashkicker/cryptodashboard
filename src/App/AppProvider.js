@@ -17,7 +17,7 @@ class AppProvider extends Component {
 			page: "Dashboard",
 			favorites: ["BTC", "DOGE", "ETH"],
 			timeInterval: "months",
-			theme: "dark",
+			theme: "light",
 			...this.savedSettings(),
 			setPage: this.setPage,
 			addCoin: this.addCoin,
@@ -32,6 +32,8 @@ class AppProvider extends Component {
 	}
 
 	componentDidMount() {
+		document.body.style.color = "#061a44"
+		document.body.style.background = "#e1eaee"
 		this.fetchCoins()
 		this.fetchPrices()
 		this.fetchHistoricalData()
@@ -185,9 +187,15 @@ class AppProvider extends Component {
 	}
 
 	changeTheme = () => {
-		this.state.theme === "dark"
-			? this.setState({ theme: "light" })
-			: this.setState({ theme: "dark" })
+		if (this.state.theme === "dark") {
+			document.body.style.color = "#061a44"
+			document.body.style.background = "#e1eaee"
+			this.setState({ theme: "light" })
+		} else {
+			document.body.style.color = "white"
+			document.body.style.background = "#010e2c"
+			this.setState({ theme: "dark" })
+		}
 	}
 
 	render() {

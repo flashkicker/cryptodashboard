@@ -47,11 +47,19 @@ const PriceTileStyled = styled(SelectableTile)`
 			justify-items: right;
 		`}
 	${props =>
+		props.theme &&
+		css`
+			box-shadow: 0px 0px 5px 1px
+				${props.theme === "light" ? "#a9b6ff" : "#ffffff"};
+			background-color: ${props.theme === "light" ? "white" : "#061a44"};
+		`}
+	${props =>
 		props.currentFavorite &&
 		css`
 			${greenBoxShadow}
 			pointer-events: none;
 		`}
+		
 `
 
 const ChangePercent = ({ data }) => {
@@ -64,11 +72,12 @@ const ChangePercent = ({ data }) => {
 	)
 }
 
-const PriceTile = ({ symbol, data, currentFavorite, setCurrentFavorite }) => {
+const PriceTile = ({ symbol, data, currentFavorite, setCurrentFavorite, theme }) => {
 	return (
 		<PriceTileStyled
 			onClick={setCurrentFavorite}
 			currentFavorite={currentFavorite}
+			theme={theme}
 		>
 			<CoinHeaderGridStyled>
 				<div>{symbol}</div>
@@ -85,13 +94,14 @@ export default function({ price, index }) {
 
 	return (
 		<AppContext.Consumer>
-			{({ currentFavorite, setCurrentFavorite }) => {
+			{({ currentFavorite, setCurrentFavorite, theme }) => {
 				return (
 					<PriceTile
 						symbol={symbol}
 						data={data}
 						currentFavorite={currentFavorite === symbol}
 						setCurrentFavorite={() => setCurrentFavorite(symbol)}
+						theme={theme}
 					/>
 				)
 			}}

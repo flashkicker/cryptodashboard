@@ -17,7 +17,7 @@ const clickCoinHandler = (topSection, coinKey, addCoin, removeCoin) => {
 export default ({ coinKey, topSection }) => {
 	return (
 		<AppContext.Consumer>
-			{({ coinList, addCoin, removeCoin, isInFavorites }) => {
+			{({ coinList, addCoin, removeCoin, isInFavorites, theme }) => {
 				const coin = coinList[coinKey]
 				const { CoinName, Symbol } = coin
 
@@ -31,6 +31,7 @@ export default ({ coinKey, topSection }) => {
 				return (
 					<TileClass
 						onClick={clickCoinHandler(topSection, coinKey, addCoin, removeCoin)}
+						theme={theme}
 					>
 						<CoinHeaderGrid
 							name={CoinName}
