@@ -16,12 +16,19 @@ const Bar = styled.div`
 	display: grid;
 	grid-template-columns: ${window.innerWidth < 767.98
 		? "170px auto 50px 50px"
-		: "220px auto 115px 100px"};
+		: "240px auto 115px 100px"};
 	margin-bottom: 40px;
+	padding: ${window.innerWidth < 767.98 ? "0px 0px 10px 0px" : "20px"};
+	background-color: #b7c6cd;
 	${props =>
 		props.active &&
 		css`
 			border-bottom: 3px solid;
+		`}
+	${props =>
+		props.theme === "dark" &&
+		css`
+			background-color: #061a44;
 		`}
 `
 
@@ -69,21 +76,21 @@ const AppBar = () => {
 	return (
 		<AppContext.Consumer>
 			{({ theme, changeTheme }) => (
-				<Bar>
+				<Bar theme={theme}>
 					<Logo>
 						<img
 							alt="Cryptopium_Logo"
 							src={icon}
 							style={
 								window.innerWidth < 767.98
-									? { height: "20px", width: "20px", marginLeft: "15px" }
+									? { height: "20px", width: "20px", marginLeft: "7px" }
 									: { height: "28px", width: "28px" }
 							}
 						/>
 						<span
 							style={
 								window.innerWidth < 767.98
-									? { fontSize: "20px", marginLeft: "10px" }
+									? { fontSize: "20px", marginLeft: "5px" }
 									: { fontSize: "32px" }
 							}
 						>
