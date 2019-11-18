@@ -1,7 +1,6 @@
 import React from "react"
 import Settings from "../Settings"
 import Content from "../Shared/Content"
-import AppLayout from "./AppLayout"
 import AppBar from "./AppBar"
 import AppProvider from "./AppProvider"
 import Dashboard from "../Dashboard"
