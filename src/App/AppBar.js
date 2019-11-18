@@ -14,7 +14,9 @@ const Logo = styled.div`
 
 const Bar = styled.div`
 	display: grid;
-	grid-template-columns: ${window.innerWidth < 767.98 ? "20px" : "220px"} auto 115px 100px;
+	grid-template-columns: ${window.innerWidth < 767.98
+		? "170px auto 50px 50px"
+		: "220px auto 115px 100px"};
 	margin-bottom: 40px;
 	${props =>
 		props.active &&
@@ -25,7 +27,7 @@ const Bar = styled.div`
 
 const ControlButtonElem = styled.div`
 	cursor: pointer;
-	margin-right: ${window.innerWidth < 767.98 ? "15px" : "0px"};
+	margin-right: ${window.innerWidth < 767.98 ? "10px" : "0px"};
 	padding: 8px;
 	${props =>
 		props.active &&
@@ -44,7 +46,7 @@ const ControlButtonText = styled.span`
 	text-align: center;
 `
 
-const ControlButton = ({ name }) => {
+const ControlButton = ({ name, icon }) => {
 	return (
 		<AppContext.Consumer>
 			{({ page, setPage, firstVisit }) => (
@@ -54,7 +56,9 @@ const ControlButton = ({ name }) => {
 					onClick={() => setPage(name)}
 					firstVisit={firstVisit}
 				>
-					<ControlButtonText>{name}</ControlButtonText>
+					<ControlButtonText>
+						{window.innerWidth < 767.98 ? <i className={icon} /> : name}
+					</ControlButtonText>
 				</ControlButtonElem>
 			)}
 		</AppContext.Consumer>
@@ -86,7 +90,7 @@ const AppBar = () => {
 							Cryptopium
 						</span>
 					</Logo>
-					<div style={{ display: "block", margin: "auto" }}>
+					<div style={{ display: "block", margin: "10px auto auto auto" }}>
 						<label>
 							<Toggle
 								id="theme"
@@ -103,8 +107,8 @@ const AppBar = () => {
 							/>
 						</label>
 					</div>
-					<ControlButton active name="Dashboard" />
-					<ControlButton name="Settings" />
+					<ControlButton active name="Dashboard" icon="desktop icon" />
+					<ControlButton name="Settings" icon="cog icon" />
 				</Bar>
 			)}
 		</AppContext.Consumer>
